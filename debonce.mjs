@@ -2,17 +2,16 @@ function debounce(fn, delay = 0, immediate = false) {
   let timer = null;
   let isInvoke = false;
   return function FN(...args) {
+    FN.cancel = () => {
+      clearTimeout(timer);
+      timer = null;
+      isInvoke = false;
+    };
     return new Promise((resolve) => {
-      FN.cancel = () => {
-        clearTimeout(timer);
-        timer = null;
-        isInvoke = false
-      };
-
       if (immediate && !isInvoke) {
         resolve(fn.apply(this, args));
         isInvoke = true;
-        return
+        return;
       }
       if (timer) clearTimeout(timer);
       timer = setTimeout(() => {
@@ -33,7 +32,7 @@ const myDebounce = debounce(() => {
 setInterval(() => {
   myDebounce();
   j++;
-}, 350);
-setInterval(() => {
-  console.log(j);
-}, 200);
+}, 400);
+// setInterval(() => {
+//   console.log(j);
+// }, 200);
