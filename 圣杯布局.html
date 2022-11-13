@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>圣杯布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header,
+    .footer {
+      height: 100px;
+      line-height: 100px;
+      background-color: rgb(98, 198, 98);
+      text-align: center;
+      font-size: 30px;
+      font-weight: bolder;
+    }
+
+    .footer {
+      background-color: rgb(92, 80, 51);
+    }
+
+    .container {
+      padding: 0 220px 0 200px;
+      overflow: hidden;
+    }
+
+    .left,
+    .middle,
+    .right {
+      position: relative;
+      float: left;
+      min-height: 130px;
+    }
+
+    .left {
+      /**
+      * 它们同属浮动流，middle使用了100%宽度，左右盒子就会被挤下去，但是使用负的margin就不会被挤，然后使用相对定位进行归位（可以translate）
+      */
+      margin-left: -100%;
+      left: -200px;
+      /* transform: translateX(-100%); */
+      width: 200px;
+      background-color: rgb(168, 90, 90);
+    }
+
+    .right {
+      margin-left: -220px;
+      /* transform: translateX(100%); */
+      right: -220px;
+      width: 220px;
+      background-color: rgb(117, 120, 117);
+    }
+
+    .middle {
+      width: 100%;
+      background-color: rgb(57, 57, 74);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="header">header</div>
+  <div class="container">
+    <div class="middle">
+      <h4>middle</h4>
+      <p>
+        middlemiddlemiddlemiddlemiddlemiddlemiddlemiddle
+      </p>
+    </div>
+    <div class="left">
+      <h4>left</h4>
+      <p>
+        leftleftleftleftleftleftleftleftleftleftleftleft
+      </p>
+    </div>
+    <div class="right">
+      <h4>right</h4>
+      <p>
+        rightrightrightrightrightrightrightrightrightright
+      </p>
+    </div>
+  </div>
+  <div class="footer">footer</div>
+</body>
+
+</html>
