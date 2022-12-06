@@ -8,7 +8,7 @@ Array.prototype.Flat = function (depth = 1) {
   const arr = []
   for (let i = 0; i < this.length; i++) {
     if (this[i] instanceof Array) {
-      arr.push(...this[i].flat(depth - 1))
+      arr.push(...this[i].Flat(depth - 1))
     }
     else 
       arr.push(this[i]);
