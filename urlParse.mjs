@@ -13,7 +13,7 @@ function parseUrl(url) {
   const obj = {};
   for (let i = 0; i < strs.length; i++) {
     const [key,value] = strs[i].split("=");
-    obj[key] = value
+    obj[key] = value;
   }
   return obj;
 }
