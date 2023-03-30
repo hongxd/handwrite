@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<style>
+  .date {
+    font-size: 26px;
+  }
+
+</style>
+
+<body>
+  <div class="date"></div>
+</body>
+<script>
+  const dom = document.querySelector(".date");
+  const restTime = 1000 * 10; // 以毫秒为单位
+  const format = (time) => time.toString().padStart(2, '0');
+  const counter = (timestamp) => {
+    const oldTime = Date.now();
+    const newTime = timestamp + oldTime;
+    let oldS, oldM, oldH;
+    requestAnimationFrame(function cb() {
+      let time = Math.floor((timestamp - Date.now() + oldTime) / 1000);
+      if (time <= 0) time = 0;
+      const s = time % 60;
+      const m = Math.floor(time / 60 % 60);
+      const h = Math.floor(time / 3600);
+      const id = requestAnimationFrame(cb);
+
+      if (oldH !== h || oldS !== s || oldM !== m) {
+        oldH = h;
+        oldS = s;
+        oldM = m;
+        const timeStr = `${format(h)}:${format(m)}:${format(s)}`
+        dom.innerHTML = timeStr;
+      }
+      if (time <= 0) {
+        cancelAnimationFrame(id);
+      }
+    });
+  };
+  counter(restTime)
+</script>
+
+</html>
