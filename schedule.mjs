@@ -1,57 +1,47 @@
 function schedule(tasks, limit) {
   return new Promise((resolve, reject) => {
-    let runningCount = 0;
-    let index = 0;
+    const len = tasks.length;
+    let current = 0;
+    let currentIndex = 0;
     const results = [];
-    function run() {
-      if (runningCount >= limit || index >= tasks.length) {
-        return;
+    const run = () => {
+      while (current <= limit && currentIndex < len) {
+        current++;
+        tasks[currentIndex]()
+          .then((val) => {
+            results.push(val);
+            console.log(val)
+          })
+          .catch(reject)
+          .finally(() => {
+            current--;
+            run();
+          });
+        currentIndex++;
       }
-      runningCount++;
-      const task = tasks[index++];
-      task()
-        .then((result) => {
-          results.push(result);
-        })
-        .catch((error) => {
-          reject(error);
-        })
-        .finally(() => {
-          runningCount--;
-          run();
-        });
-    }
-
-    while (runningCount < limit && index < tasks.length) {
-      run();
-    }
-
-    const check = setInterval(() => {
-      if (runningCount === 0) {
-        clearInterval(check);
-        resolve(results);
-      }
-    }, 10);
+      if(currentIndex===len) resolve(results);
+    };
+    run();
   });
 }
 
 // Example usage:
 const tasks = [
-  () => new Promise(resolve=> setTimeout(resolve,3000)),
-  () => Promise.resolve(2),
-  () => Promise.resolve(3),
-  () => Promise.resolve(4),
-  () => Promise.resolve(5),
-  () => Promise.resolve(6),
-  () => Promise.resolve(7),
-  () => Promise.resolve(8),
-  () => Promise.resolve(9),
-  () => Promise.resolve(10),
-];
+  () => new Promise((resolve)=>setTimeout(()=> resolve(1),9000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(2),1000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(3),1000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(4),2000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(5),2000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(6),3000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(7),3000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(8),4000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(9),4000)),
+  () => new Promise((resolve)=>setTimeout(()=> resolve(10),4000)),
+];0
 
-schedule(tasks, 3)
+schedule(tasks, 2)
   .then((results) => {
-    console.log(results);
+    // console.log(results);
   })
   .catch((error) => {
     console.error(error);
