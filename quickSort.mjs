@@ -11,11 +11,19 @@ function quickSort1(arr) {
   }
   helper(0, arr.length - 1);
 }
+/**
+ * 对数组进行划分，最后返回pivotIndex
+ * @param {Array} arr 
+ * @param {number} left 
+ * @param {number} right 
+ * @returns {number} pivotIndex
+ */
 const partition = (arr, left, right) => {
   // 随机选一个数，与left交换，变成pivot
   const randomIndex = Math.floor(Math.random() * (right - left + 1) + left);
   swap(left, randomIndex,arr);
   const pivot = arr[left];
+
   let j = left + 1;
   for (let i = j; i <= right; i++) {
     if (arr[i] <= pivot) {
@@ -23,7 +31,7 @@ const partition = (arr, left, right) => {
       j++;
     }
   }
-  swap(left, j - 1, arr); // 让pivot到达它应该在的位置
+  swap(left, j - 1, arr); // 让pivot到达它应该在的位置，在pivot左边的都是比它小的，在右边的都是比它大的
   return j - 1;
 };
 const swap = (index1, index2, arr) => {
