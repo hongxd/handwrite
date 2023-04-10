@@ -1,26 +1,25 @@
 function mergeSort(arr, result, start, end) {
-    if (start >= end)
-        return;
-    const len = end - start, mid = (len >> 1) + start;
-    let start1 = start, end1 = mid;
-    let start2 = mid + 1, end2 = end;
-    mergeSort(arr, result, start1, end1);
-    mergeSort(arr, result, start2, end2);
-    let k = start;
-    while (start1 <= end1 && start2 <= end2)
-        result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
-    while (start1 <= end1)
-        result[k++] = arr[start1++];
-    while (start2 <= end2)
-        result[k++] = arr[start2++];
-    for (k = start; k <= end; k++)
-        arr[k] = result[k];
+  if (start >= end) return;
+  const len = end - start;
+  const mid = Math.trunc(len / 2) + start;
+  let start1 = start,
+    end1 = mid;
+  let start2 = mid + 1,
+    end2 = end;
+  mergeSort(arr, result, start1, end1);
+  mergeSort(arr, result, start2, end2);
+  let k = start;
+  while (start1 <= end1 && start2 <= end2)
+    result[k++] = arr[start1] < arr[start2] ? arr[start1++] : arr[start2++];
+  while (start1 <= end1) result[k++] = arr[start1++];
+  while (start2 <= end2) result[k++] = arr[start2++];
+  for (k = start; k <= end; k++) arr[k] = result[k];
 }
 
 function merge_sort(arr) {
-    const len = arr.length;
-    const result = new Array(len).fill(0);
-    mergeSort(arr, result, 0, len - 1);
+  const len = arr.length;
+  const result = new Array(len).fill(0);
+  mergeSort(arr, result, 0, len - 1);
 }
 
 // function mergeSort(arr) {
