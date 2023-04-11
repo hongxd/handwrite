@@ -1,8 +1,6 @@
+// 观察者模式
 class Subject {
-  observes;
-  constructor() {
-    this.observes = [];
-  }
+  observes = [];
   observe(subject) {
     this.observes.push(subject);
   };
