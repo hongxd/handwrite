@@ -1,3 +1,9 @@
+/**
+ * 实现限制请求并发数
+ * @param {Promise[]} tasks 总任务数
+ * @param {number} limit 限制并发数
+ * @returns 
+ */
 function schedule(tasks, limit) {
   return new Promise((resolve, reject) => {
     const len = tasks.length;
