@@ -1,3 +1,4 @@
+// 归并排序
 function mergeSort(arr, result, start, end) {
   if (start >= end) return;
   const len = end - start;
@@ -16,6 +17,10 @@ function mergeSort(arr, result, start, end) {
   for (k = start; k <= end; k++) arr[k] = result[k];
 }
 
+/**
+ * 
+ * @param arr 待排序数组
+ */
 function merge_sort(arr) {
   const len = arr.length;
   const result = new Array(len).fill(0);
