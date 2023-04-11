@@ -1,3 +1,4 @@
+//! 字节跳动较高频面试题
 // 实现一个CodingMan，可以按照以下方式调用:
 // CodingMan(“Hank”)输出:
 // Hi! This is Hank!
@@ -54,16 +55,17 @@ function CodingMan(val) {
 
   setTimeout(() => {
     let promise = Promise.resolve();
-    for (let i = 0; i < queue.length; i++) {
-      promise = promise.then(queue[i]);
+    while (queue.length !== 0) {
+      promise = promise.then(queue.shift())
     }
   });
   return codingMan;
 }
-CodingMan("Hank")
+const c = CodingMan("Hank")
   .sleep(1000)
   .eat("shit")
   .sleepFirst(1000)
   .sleep(1000)
   .eat("dhx");
 // CodingMan("sss").eat("shit").sleep(3000).eat("shot").sleepFirst(1000);
+c.eat("dinner").sleep(2000).eat("byte").sleepFirst(10000);
