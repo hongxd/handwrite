@@ -3,7 +3,7 @@ function throttle(func, wait, options = {}) {
   let previous = 0;
   const { leading, trailing } = options;
 
-  const throttled = function() {
+  const throttled = function () {
     const _now = Date.now();
     if (previous === 0 && !leading) previous = _now;
     const remaining = wait - (_now - previous);
@@ -24,7 +24,7 @@ function throttle(func, wait, options = {}) {
     }
   };
 
-  throttled.cancel = function() {
+  throttled.cancel = function () {
     clearTimeout(timeout);
     previous = 0;
     timeout = args = null;
@@ -32,8 +32,8 @@ function throttle(func, wait, options = {}) {
 
   return throttled;
 }
-const fn = throttle((i) => console.log(i),200,{trailing:true});
-for(let i = 0; i < 2**23; i++) fn(i)
+const fn = throttle((i) => console.log(i), 200, { trailing: true });
+for (let i = 0; i < 2 ** 23; i++) fn(i);
 setTimeout(() => {
-  for(let i = 0; i < 2**23; i++) fn(i)
+  for (let i = 0; i < 2 ** 23; i++) fn(i);
 }, 1000);
