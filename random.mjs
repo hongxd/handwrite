@@ -1,3 +1,7 @@
+/**
+ * 洗牌算法，数组打乱
+ * @param {Array} arr 被打乱数组
+ */
 function random(arr) {
   const len = arr.length;
   for (let i = len - 1; i > 0; i--) {
