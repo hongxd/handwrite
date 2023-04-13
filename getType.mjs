@@ -1,3 +1,8 @@
+/**
+ * 获取类型
+ * @param {*} arg 
+ * @returns 
+ */
 function getType(arg) {
   const type = typeof arg;
   if(type === "number" && isNaN(arg)) return "NaN";
