@@ -16,5 +16,21 @@ Array.prototype.Flat = function (depth = 1) {
   return arr;
 }
 
-const a = [1, [1, 2, [1, 2, 3,[111,222,[1111]]]]].Flat(4)
+const a = [1, [1, 2, [1, 2, 3,[111,222,[1111]]]]].Flat(1)
 console.log(a)
+// 迭代版，不会那种带有depth的
+Array.prototype.Flat_loop = function () {
+  const arr = []
+  const stack = this.slice()
+  while (stack.length !== 0) {
+    const val = stack.pop()
+    if (val instanceof Array) {
+      stack.push(...val)
+    } else {
+      arr.unshift(val)
+    }
+  }
+  return arr;
+}
+const b = [1, [1, 2, [1, 2, 3,[111,222,[1111]]]]].Flat_loop()
+console.log(b)
