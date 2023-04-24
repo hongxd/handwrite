@@ -4,7 +4,7 @@
  * @param {number} limit 限制并发数
  * @returns 
  */
-function schedule(tasks, limit) {
+/* function schedule(tasks, limit) {
   return new Promise((resolve, reject) => {
     const len = tasks.length;
     let current = 0;
@@ -29,7 +29,7 @@ function schedule(tasks, limit) {
     };
     run();
   });
-}
+} */
 
 // Example usage:
 const tasks = [
