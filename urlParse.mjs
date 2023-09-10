@@ -17,5 +17,20 @@ function parseUrl(url) {
   }
   return obj;
 }
-let str = "https://www.meituan.com/index.html?a=test&b=666v";
-console.log("res ", parseUrl(str));
+let str = "https://www.meituan.com/index.html?a=test&b=666v&c=4s7#aaa";
+// console.log("res ", parseUrl(str));
+
+/**
+ * url解析
+ * @param {string} url 
+ */
+function urlParse(url) {
+  const regexp = /[^?]+\?(?<query>[^#]+)/
+  const res = regexp.exec(url);
+  const ans = res?.groups.query.split("&").map((str) => {
+    const [key, value] = str.split("=");
+    return { [key]: value };
+  })
+  console.log(ans)
+}
+urlParse(str)
