@@ -6,4 +6,6 @@ function toCamelCase(str) {
   return arr.join("");
 }
 
-console.log(toCamelCase('hello-world')); // helloWorld console.log(toCamelCase('hello_world')); // helloWorld console.log(toCamelCase('hello-world-goodbye')); // helloWorldGoodbye
+console.log(toCamelCase('hello-world')); // helloWorld
+console.log(toCamelCase('hello_world')); // helloWorld
+console.log(toCamelCase('hello-world-goodbye')); // helloWorldGoodbye
